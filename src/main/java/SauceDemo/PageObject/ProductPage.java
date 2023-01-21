@@ -6,6 +6,7 @@ import com.microsoft.playwright.Page;
 public class ProductPage extends BasePage {
     Page page;
     Locator shoppingCartButton;
+    Locator shoppingCartButtonBadge;
     Locator filterProductsDropdown;
     Locator filterProductsActiveOption;
     Locator firstProduct;
@@ -13,6 +14,7 @@ public class ProductPage extends BasePage {
         super(page);
         this.page = page;
         shoppingCartButton = page.locator("//a[@class='shopping_cart_link']");
+        shoppingCartButtonBadge = shoppingCartButton.locator(".shopping_cart_badge");
         filterProductsDropdown = page.locator("//span[@class='select_container']");
         filterProductsActiveOption = filterProductsDropdown.locator(".active_option");
         firstProduct = page.locator("//div[@class='inventory_item_description']").first();
@@ -57,5 +59,9 @@ public class ProductPage extends BasePage {
 
     public boolean doesTheProductDisplayRemove(String productName){
         return page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button").textContent().equals("Remove");
+    }
+
+    public boolean doesTheCartShowTheseManyItems(String numOfItemsExpected){
+        return shoppingCartButtonBadge.textContent().equals(numOfItemsExpected);
     }
 }

@@ -70,4 +70,14 @@ public class ProductStepDefs {
     public void theButtonOnProductNumberNowDisplaysRemove(int itemIndex) {
         Assert.assertTrue(productPage.doesTheProductDisplayRemove(itemIndex - 1));
     }
+
+    @And("I add {string} to the cart")
+    public void iAddSauceLabsBoltTShirtToTheCart(String productName) {
+        productPage.addProductToCart(productName);
+    }
+
+    @Then("the shopping cart displays a {string} badge")
+    public void theShoppingCartDisplaysABadge(String badgeNumber) {
+        Assert.assertTrue(productPage.doesTheCartShowTheseManyItems(badgeNumber));
+    }
 }

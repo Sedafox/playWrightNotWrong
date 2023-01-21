@@ -53,3 +53,10 @@ Feature: Products
     And I click add to cart on product number 3
     Then the button on product number 3 now displays Remove
 
+  Scenario: I add an item to the cart and verify the cart now displays a icon
+    Given I log in with the standard user
+    And I add 'Sauce Labs Bolt T-Shirt' to the cart
+    Then the shopping cart displays a '1' badge
+    And I add 'Sauce Labs Backpack' to the cart
+    Then the shopping cart displays a '2' badge
+
