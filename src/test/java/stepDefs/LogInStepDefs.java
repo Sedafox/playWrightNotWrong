@@ -29,7 +29,7 @@ public class LogInStepDefs {
     public void iEnterIntoTheUsernameField(String userName) {
         LogInPage logInPage = new LogInPage(page);
         logInPage.inputUserName(userName);
-        Assert.assertTrue(logInPage.verifyNameMatchesWhatIsInUsernameInput(userName));
+        Assert.assertTrue(logInPage.nameMatchesWhatIsInUsernameInput(userName));
     }
 
     @And("I enter {string} into the password field")

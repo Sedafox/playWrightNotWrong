@@ -24,7 +24,7 @@ public class LogInPage {
         logInUsernameField.type(username);
     }
 
-    public boolean verifyNameMatchesWhatIsInUsernameInput(String username){
+    public boolean nameMatchesWhatIsInUsernameInput(String username){
         return logInUsernameField.getAttribute("value").equals(username);
     }
 
