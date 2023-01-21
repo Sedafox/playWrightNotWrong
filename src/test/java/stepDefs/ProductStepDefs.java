@@ -80,4 +80,9 @@ public class ProductStepDefs {
     public void theShoppingCartDisplaysABadge(String badgeNumber) {
         Assert.assertTrue(productPage.doesTheCartShowTheseManyItems(badgeNumber));
     }
+
+    @And("I remove {string} from the cart")
+    public void iRemoveSauceLabsBackpackFromTheCart(String productName) {
+        productPage.clickTheProductRemoveButton(productName);
+    }
 }

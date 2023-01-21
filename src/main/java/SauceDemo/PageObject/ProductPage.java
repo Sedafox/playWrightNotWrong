@@ -64,4 +64,12 @@ public class ProductPage extends BasePage {
     public boolean doesTheCartShowTheseManyItems(String numOfItemsExpected){
         return shoppingCartButtonBadge.textContent().equals(numOfItemsExpected);
     }
+
+    public void clickTheProductRemoveButton(int itemIndex){
+        page.locator("//div[@class='inventory_item_description']").nth(itemIndex).locator("//button[text()='Remove']").click();
+    }
+
+    public void clickTheProductRemoveButton(String productName){
+        page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button[text()='Remove']").click();
+    }
 }
