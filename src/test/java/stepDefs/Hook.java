@@ -1,11 +1,6 @@
 package stepDefs;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
+import com.microsoft.playwright.*;
 
 public class Hook {
 
@@ -16,6 +11,7 @@ public class Hook {
         Playwright playwright = Playwright.create();
         BrowserType chrome = playwright.chromium();
         Browser browser = chrome.launch(new BrowserType.LaunchOptions().setHeadless(false));
-        return browser.newPage();
+        BrowserContext context = browser.newContext();
+        return context.newPage();
     }
 }

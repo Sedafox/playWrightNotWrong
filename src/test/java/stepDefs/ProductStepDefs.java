@@ -85,4 +85,9 @@ public class ProductStepDefs {
     public void iRemoveSauceLabsBackpackFromTheCart(String productName) {
         productPage.clickTheProductRemoveButton(productName);
     }
+
+    @And("I remove product number {int} from the cart")
+    public void iRemoveProductNumberFromTheCart(int itemIndex) {
+        productPage.clickTheProductRemoveButton(itemIndex - 1);
+    }
 }
