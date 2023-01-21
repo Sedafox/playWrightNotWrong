@@ -68,4 +68,12 @@ public class LogInStepDefs {
     public void iObserveTheSwagLabsLogo() {
         Assert.assertTrue(logInPage.isSwagLabsLogoVisible());
     }
+
+    @Given("I log in with the standard user")
+    public void logInWithTheStandardUser(){
+        logInPage.navigateToLoginPage();
+        logInPage.inputUserName(logInPage.standardUser);
+        logInPage.inputPassword(logInPage.standardUserPassword);
+        logInPage.clickLoginButton();
+    }
 }

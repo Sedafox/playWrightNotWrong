@@ -1,7 +1,7 @@
 package SauceDemo.PageObject;
 import com.microsoft.playwright.*;
 
-public class LogInPage {
+public class LogInPage extends BasePage {
 
     Page page;
     Locator logInUsernameField;
@@ -10,6 +10,7 @@ public class LogInPage {
     Locator incorrectUsernameIcon;
     Locator swagLabsLogo;
     public LogInPage(Page page){
+        super(page);
         this.page = page;
         logInUsernameField = page.locator("#user-name");
         logInPasswordField = page.locator("#password");
@@ -19,6 +20,8 @@ public class LogInPage {
     }
 
     String baseURL = "http://www.saucedemo.com";
+    public String standardUser = "standard_user";
+    public String standardUserPassword = "secret_sauce";
 
     public void navigateToLoginPage(){
         page.navigate(baseURL);
