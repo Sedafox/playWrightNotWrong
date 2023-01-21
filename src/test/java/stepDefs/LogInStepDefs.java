@@ -16,7 +16,7 @@ public class LogInStepDefs {
 
     @Before
     public void getPage(){
-        this.page = Hook.page;
+        this.page = stepDefs.Hook.page;
     }
 
     @Given("^I navigate to the log in page of Swag Labs$")
@@ -48,5 +48,11 @@ public class LogInStepDefs {
     public void iObserveTheProductsPage() {
         ProductPage productPage = new ProductPage(page);
         Assert.assertTrue(productPage.verifyOnProductPage());
+    }
+
+    @Then("the text {string} is not displayed on the log in page")
+    public void theTextSandwichIsNotDisplayedOnTheLogInPage(String text) {
+        LogInPage logInPage = new LogInPage(page);
+        Assert.assertFalse(logInPage.textExistsOnLoginPage(text));
     }
 }

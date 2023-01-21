@@ -24,15 +24,19 @@ public class LogInPage {
         logInUsernameField.type(username);
     }
 
-    public boolean nameMatchesWhatIsInUsernameInput(String username){
-        return logInUsernameField.getAttribute("value").equals(username);
-    }
-
     public void inputPassword(String password){
         logInPasswordField.type(password);
     }
 
     public void clickLoginButton(){
         logInButton.click();
+    }
+
+    public boolean nameMatchesWhatIsInUsernameInput(String username) {
+        return logInUsernameField.getAttribute("value").equals(username);
+    }
+
+    public boolean textExistsOnLoginPage(String text) {
+        return page.getByText(text).isVisible();
     }
 }

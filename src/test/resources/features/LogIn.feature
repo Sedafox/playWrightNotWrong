@@ -12,3 +12,8 @@ Feature: Log In
       | username      | password     |
       | standard_user | secret_sauce |
       | problem_user  | secret_sauce |
+
+
+  Scenario: The word Sandwich does not appear on the login page
+    Given I navigate to the log in page of Swag Labs
+    Then the text 'Sandwich' is not displayed on the log in page
