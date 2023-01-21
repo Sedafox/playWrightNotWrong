@@ -63,4 +63,9 @@ public class LogInStepDefs {
     public void iSeeAnXIconInTheUsernameFieldToIndicateMyUsernameIsIncorrect() {
         Assert.assertTrue(logInPage.X_IconExistsInUsernameField());
     }
+
+    @Then("I observe the Swag Labs logo")
+    public void iObserveTheSwagLabsLogo() {
+        Assert.assertTrue(logInPage.isSwagLabsLogoVisible());
+    }
 }
