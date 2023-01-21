@@ -13,46 +13,54 @@ import org.junit.Assert;
 public class LogInStepDefs {
 
     Page page;
+    LogInPage logInPage;
+    ProductPage productPage;
 
     @Before
     public void getPage(){
         this.page = stepDefs.Hook.page;
+        this.logInPage = new LogInPage(page);
+        productPage = new ProductPage(page);
     }
 
     @Given("^I navigate to the log in page of Swag Labs$")
     public void iNavigateToTheLogInPageOfSwagLabs() {
-        LogInPage logInPage = new LogInPage(page);
         logInPage.navigateToLoginPage();
     }
 
     @And("I enter {string} into the username field")
     public void iEnterIntoTheUsernameField(String userName) {
-        LogInPage logInPage = new LogInPage(page);
         logInPage.inputUserName(userName);
         Assert.assertTrue(logInPage.nameMatchesWhatIsInUsernameInput(userName));
     }
 
     @And("I enter {string} into the password field")
     public void iEnterIntoThePasswordField(String password){
-        LogInPage logInPage = new LogInPage(page);
         logInPage.inputPassword(password);
     }
 
     @When("I click the LogIn button")
     public void iClickTheLogInButton() {
-        LogInPage logInPage = new LogInPage(page);
         logInPage.clickLoginButton();
     }
 
     @Then("^I observe the Products page$")
     public void iObserveTheProductsPage() {
-        ProductPage productPage = new ProductPage(page);
         Assert.assertTrue(productPage.verifyOnProductPage());
     }
 
     @Then("the text {string} is not displayed on the log in page")
     public void theTextSandwichIsNotDisplayedOnTheLogInPage(String text) {
-        LogInPage logInPage = new LogInPage(page);
         Assert.assertFalse(logInPage.textExistsOnLoginPage(text));
+    }
+
+    @Then("I observe the text {string} on the log in page")
+    public void iObserveTheTextEpicSadfaceUsernameAndPasswordDoNotMatchAnyUserInThisServiceOnTheLogInPage(String text) {
+        Assert.assertTrue(logInPage.textExistsOnLoginPage(text));
+    }
+
+    @Then("I see an x icon in the username field to indicate my username is incorrect")
+    public void iSeeAnXIconInTheUsernameFieldToIndicateMyUsernameIsIncorrect() {
+        Assert.assertTrue(logInPage.X_IconExistsInUsernameField());
     }
 }

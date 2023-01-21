@@ -7,11 +7,13 @@ public class LogInPage {
     Locator logInUsernameField;
     Locator logInPasswordField;
     Locator logInButton;
+    Locator incorrectUsernameIcon;
     public LogInPage(Page page){
         this.page = page;
         logInUsernameField = page.locator("#user-name");
         logInPasswordField = page.locator("#password");
         logInButton = page.locator("#login-button");
+        incorrectUsernameIcon = page.locator("//input[@data-test='username']/..//*[contains(@class,'svg')]");
     }
 
     String baseURL = "http://www.saucedemo.com";
@@ -38,5 +40,9 @@ public class LogInPage {
 
     public boolean textExistsOnLoginPage(String text) {
         return page.getByText(text).isVisible();
+    }
+
+    public boolean X_IconExistsInUsernameField(){
+        return incorrectUsernameIcon.isVisible();
     }
 }
