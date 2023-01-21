@@ -40,4 +40,19 @@ public class ProductStepDefs {
     public void iVerifyTheDefaultFilterForProductsIsNameAToZ(String filterText) {
         Assert.assertTrue(productPage.thisIsTheActiveFilter(filterText));
     }
+
+    @And("I click the filter product button")
+    public void iClickTheFilterProductButton() {
+        productPage.clickFilterButton();
+    }
+
+    @Then("I select {string} from the filter selection dropdown")
+    public void iSelect(String selection) {
+        productPage.selectOptionFromFilterDropdown(selection);
+    }
+
+    @Then("I verify the current filter for products is displayed as {string}")
+    public void iVerifyTheCurrentFilterForProductsIsDisplayedAs(String currentSelection) {
+        Assert.assertTrue(productPage.thisIsTheActiveFilter(currentSelection));
+    }
 }

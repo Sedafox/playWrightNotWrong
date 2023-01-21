@@ -28,4 +28,13 @@ public class ProductPage extends BasePage {
         return filterProductsActiveOption.textContent().equals(filterText);
     }
 
+    public void clickFilterButton(){
+        filterProductsDropdown.click();
+    }
+
+    public void selectOptionFromFilterDropdown(String selection){
+        filterProductsDropdown.type(selection);
+        filterProductsDropdown.press("Enter");
+    }
+
 }

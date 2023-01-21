@@ -22,3 +22,15 @@ Feature: Products
     And I enter 'secret_sauce' into the password field
     And I click the LogIn button
     Then I verify the default filter for products is 'Name (A to Z)'
+
+  Scenario Outline: I change the filter from Name (A to Z) to other options
+    Given I log in with the standard user
+    And I click the filter product button
+    Then I select "<filter_selection>" from the filter selection dropdown
+    Then I verify the current filter for products is displayed as "<filter_selection>"
+
+    Examples:
+      | filter_selection    |
+      | Name (Z to A)       |
+      | Price (low to high) |
+      | Price (high to low) |
