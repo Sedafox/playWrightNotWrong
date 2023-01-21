@@ -55,4 +55,9 @@ public class ProductStepDefs {
     public void iVerifyTheCurrentFilterForProductsIsDisplayedAs(String currentSelection) {
         Assert.assertTrue(productPage.thisIsTheActiveFilter(currentSelection));
     }
+
+    @Then("I verify the first product on the page is {string}")
+    public void iVerifyTheFirstProductOnThePageIsSauceLabsBackpack(String expectedFirstProduct) {
+        Assert.assertTrue(productPage.isThisTheFirstProduct(expectedFirstProduct));
+    }
 }

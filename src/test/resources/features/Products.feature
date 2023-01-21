@@ -34,3 +34,16 @@ Feature: Products
       | Name (Z to A)       |
       | Price (low to high) |
       | Price (high to low) |
+
+  Scenario Outline: I verify that changing the filter changes the product on the page
+    Given I log in with the standard user
+    Then I verify the first product on the page is 'Sauce Labs Backpack'
+    And I click the filter product button
+    Then I select "<filter_selection>" from the filter selection dropdown
+    Then I verify the first product on the page is "<expected_first_product>"
+
+    Examples:
+      | filter_selection    | expected_first_product            |
+      | Name (Z to A)       | Test.allTheThings() T-Shirt (Red) |
+      | Price (low to high) | Sauce Labs Onesie                 |
+      | Price (high to low) | Sauce Labs Fleece Jacket          |

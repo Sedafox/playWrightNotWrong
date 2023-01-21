@@ -8,12 +8,14 @@ public class ProductPage extends BasePage {
     Locator shoppingCartButton;
     Locator filterProductsDropdown;
     Locator filterProductsActiveOption;
+    Locator firstProduct;
     public ProductPage(Page page){
         super(page);
         this.page = page;
         shoppingCartButton = page.locator("//a[@class='shopping_cart_link']");
         filterProductsDropdown = page.locator("//span[@class='select_container']");
         filterProductsActiveOption = filterProductsDropdown.locator(".active_option");
+        firstProduct = page.locator("//div[@class='inventory_item_description']").first();
     }
 
     public Boolean verifyOnProductPage(){
@@ -35,6 +37,10 @@ public class ProductPage extends BasePage {
     public void selectOptionFromFilterDropdown(String selection){
         filterProductsDropdown.type(selection);
         filterProductsDropdown.press("Enter");
+    }
+
+    public boolean isThisTheFirstProduct(String expectedProduct){
+        return firstProduct.textContent().contains(expectedProduct);
     }
 
 }
