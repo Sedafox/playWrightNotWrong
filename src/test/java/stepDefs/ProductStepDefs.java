@@ -38,7 +38,7 @@ public class ProductStepDefs {
 
     @Then("I verify the default filter for products is {string}")
     public void iVerifyTheDefaultFilterForProductsIsNameAToZ(String filterText) {
-        Assert.assertTrue(productPage.thisIsTheActiveFilter(filterText));
+        Assert.assertTrue(productPage.isThisTheActiveFilter(filterText));
     }
 
     @And("I click the filter product button")
@@ -52,12 +52,22 @@ public class ProductStepDefs {
     }
 
     @Then("I verify the current filter for products is displayed as {string}")
-    public void iVerifyTheCurrentFilterForProductsIsDisplayedAs(String currentSelection) {
-        Assert.assertTrue(productPage.thisIsTheActiveFilter(currentSelection));
+    public void iVerifyTheCurrentFilterForProductsIsDisplayedAs(String expectedSelection) {
+        Assert.assertTrue(productPage.isThisTheActiveFilter(expectedSelection));
     }
 
     @Then("I verify the first product on the page is {string}")
     public void iVerifyTheFirstProductOnThePageIsSauceLabsBackpack(String expectedFirstProduct) {
         Assert.assertTrue(productPage.isThisTheFirstProduct(expectedFirstProduct));
+    }
+
+    @And("I click add to cart on product number {int}")
+    public void iClickAddToCartOnProductNumber(int itemIndex) {
+        productPage.addProductToCart(itemIndex - 1);
+    }
+
+    @Then("the button on product number {int} now displays Remove")
+    public void theButtonOnProductNumberNowDisplaysRemove(int itemIndex) {
+        Assert.assertTrue(productPage.doesTheProductDisplayRemove(itemIndex - 1));
     }
 }

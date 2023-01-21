@@ -20,4 +20,13 @@ public class BaseStepDefs {
     public void iClickLOGOUTOnTheMenu(String selection) {
         basePage.selectFromMenu(selection);
     }
+
+    @And("debug step")
+    public void debugStep() {
+        try {
+            Thread.sleep(50000000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

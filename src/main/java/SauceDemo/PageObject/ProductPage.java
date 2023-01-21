@@ -26,7 +26,7 @@ public class ProductPage extends BasePage {
         return shoppingCartButton.isVisible();
     }
 
-    public boolean thisIsTheActiveFilter(String filterText){
+    public boolean isThisTheActiveFilter(String filterText){
         return filterProductsActiveOption.textContent().equals(filterText);
     }
 
@@ -43,4 +43,19 @@ public class ProductPage extends BasePage {
         return firstProduct.textContent().contains(expectedProduct);
     }
 
+    public void addProductToCart(int itemIndex){
+        page.locator("//button[contains(@id,'add-to-cart')]").nth(itemIndex).click();
+    }
+
+    public void addProductToCart(String productName){
+        page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button").click();
+    }
+
+    public boolean doesTheProductDisplayRemove(int itemIndex){
+       return page.locator("//div[@class='inventory_item_description']").nth(itemIndex).locator("//button").textContent().equals("Remove");
+    }
+
+    public boolean doesTheProductDisplayRemove(String productName){
+        return page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button").textContent().equals("Remove");
+    }
 }

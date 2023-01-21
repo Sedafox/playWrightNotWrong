@@ -47,3 +47,9 @@ Feature: Products
       | Name (Z to A)       | Test.allTheThings() T-Shirt (Red) |
       | Price (low to high) | Sauce Labs Onesie                 |
       | Price (high to low) | Sauce Labs Fleece Jacket          |
+
+  Scenario: I click add to cart on the third product
+    Given I log in with the standard user
+    And I click add to cart on product number 3
+    Then the button on product number 3 now displays Remove
+
