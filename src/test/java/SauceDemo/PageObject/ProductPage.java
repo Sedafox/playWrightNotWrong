@@ -1,5 +1,6 @@
 package SauceDemo.PageObject;
 
+import SauceDemo.Utilities.PageUtilities;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
@@ -10,7 +11,8 @@ public class ProductPage extends BasePage {
     Locator filterProductsDropdown;
     Locator filterProductsActiveOption;
     Locator firstProduct;
-    public ProductPage(Page page){
+
+    public ProductPage(Page page) {
         super(page);
         this.page = page;
         shoppingCartButton = page.locator("//a[@class='shopping_cart_link']");
@@ -20,56 +22,56 @@ public class ProductPage extends BasePage {
         firstProduct = page.locator("//div[@class='inventory_item_description']").first();
     }
 
-    public Boolean verifyOnProductPage(){
+    public Boolean verifyOnProductPage() {
         return page.url().contains("inventory.html");
     }
 
-    public Boolean isShoppingCartButtonVisible(){
+    public Boolean isShoppingCartButtonVisible() {
         return shoppingCartButton.isVisible();
     }
 
-    public boolean isThisTheActiveFilter(String filterText){
-        return filterProductsActiveOption.textContent().equals(filterText);
+    public boolean isThisTheActiveFilter(String filterText) {
+        return PageUtilities.retryVerificationForSeconds(10, filterProductsActiveOption.textContent().equals(filterText));
     }
 
-    public void clickFilterButton(){
+    public void clickFilterButton() {
         filterProductsDropdown.click();
     }
 
-    public void selectOptionFromFilterDropdown(String selection){
+    public void selectOptionFromFilterDropdown(String selection) {
         filterProductsDropdown.type(selection);
         filterProductsDropdown.press("Enter");
     }
 
-    public boolean isThisTheFirstProduct(String expectedProduct){
-        return firstProduct.textContent().contains(expectedProduct);
+    public boolean isThisTheFirstProduct(String expectedProduct) {
+        return PageUtilities.retryVerificationForSeconds(10, firstProduct.textContent().contains(expectedProduct));
     }
 
-    public void addProductToCart(int itemIndex){
+    public void addProductToCart(int itemIndex) {
         page.locator("//button[contains(@id,'add-to-cart')]").nth(itemIndex).click();
     }
 
-    public void addProductToCart(String productName){
-        page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button").click();
+    public void addProductToCart(String productName) {
+        page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button[contains(@id,'add-to-cart')]").click();
     }
 
-    public boolean doesTheProductDisplayRemove(int itemIndex){
-       return page.locator("//div[@class='inventory_item_description']").nth(itemIndex).locator("//button").textContent().equals("Remove");
+    public boolean doesTheProductDisplayRemove(int itemIndex) {
+        return page.locator("//div[@class='inventory_item_description']").nth(itemIndex).locator("//button").textContent().equals("Remove");
     }
 
-    public boolean doesTheProductDisplayRemove(String productName){
-        return page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button").textContent().equals("Remove");
+    public boolean doesTheProductDisplayRemove(String productName) {
+        return page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button[text()='Remove']").textContent().equals("Remove");
     }
 
-    public boolean doesTheCartShowTheseManyItems(String numOfItemsExpected){
+    public boolean doesTheCartShowTheseManyItems(String numOfItemsExpected) {
         return shoppingCartButtonBadge.textContent().equals(numOfItemsExpected);
     }
 
-    public void clickTheProductRemoveButton(int itemIndex){
+    public void clickTheProductRemoveButton(int itemIndex) {
         page.locator("//div[@class='inventory_item_description']").nth(itemIndex).locator("//button[text()='Remove']").click();
     }
 
-    public void clickTheProductRemoveButton(String productName){
+    public void clickTheProductRemoveButton(String productName) {
         page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button[text()='Remove']").click();
     }
 }

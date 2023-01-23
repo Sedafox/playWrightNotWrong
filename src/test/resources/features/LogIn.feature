@@ -36,6 +36,6 @@ Feature: Log In
     When I click the LogIn button
     Then I see an x icon in the username field to indicate my username is incorrect
 
-    Scenario: When I visit the login page, I observe the Swag Labs logo
-      Given I navigate to the log in page of Swag Labs
-      Then I observe the Swag Labs logo
+  Scenario: When I visit the login page, I observe the Swag Labs logo
+    Given I navigate to the log in page of Swag Labs
+    Then I observe the Swag Labs logo

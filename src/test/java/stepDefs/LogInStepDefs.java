@@ -2,23 +2,20 @@ package stepDefs;
 
 import SauceDemo.PageObject.LogInPage;
 import SauceDemo.PageObject.ProductPage;
-import com.microsoft.playwright.Page;
-import io.cucumber.java.Before;
+import SauceDemo.Utilities.PageManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class LogInStepDefs {
+public class LogInStepDefs extends PageManager {
 
-    Page page;
     LogInPage logInPage;
     ProductPage productPage;
 
-    @Before
-    public void getPage(){
-        this.page = stepDefs.Hook.page;
+
+    public LogInStepDefs() {
         this.logInPage = new LogInPage(page);
         productPage = new ProductPage(page);
     }
@@ -35,7 +32,7 @@ public class LogInStepDefs {
     }
 
     @And("I enter {string} into the password field")
-    public void iEnterIntoThePasswordField(String password){
+    public void iEnterIntoThePasswordField(String password) {
         logInPage.inputPassword(password);
     }
 
@@ -70,7 +67,7 @@ public class LogInStepDefs {
     }
 
     @Given("I log in with the standard user")
-    public void logInWithTheStandardUser(){
+    public void logInWithTheStandardUser() {
         logInPage.navigateToLoginPage();
         logInPage.inputUserName(logInPage.standardUser);
         logInPage.inputPassword(logInPage.standardUserPassword);

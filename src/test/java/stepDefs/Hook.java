@@ -1,17 +1,28 @@
 package stepDefs;
 
+import SauceDemo.Utilities.PageManager;
 import com.microsoft.playwright.*;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 
 public class Hook {
 
-    public static Page page = setUp();
+    public static Page page;
+    private static Browser browser;
 
 
-    private static Page setUp() {
+    @Before
+    public static void setUp() {
         Playwright playwright = Playwright.create();
         BrowserType chrome = playwright.chromium();
-        Browser browser = chrome.launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = chrome.launch(new BrowserType.LaunchOptions().setHeadless(false));
         BrowserContext context = browser.newContext();
-        return context.newPage();
+        page = context.newPage();
+        PageManager.page = page;
+    }
+
+    @After
+    public static void tearDown() {
+        browser.close();
     }
 }

@@ -60,7 +60,6 @@ Feature: Products
     And I add 'Sauce Labs Backpack' to the cart
     Then the shopping cart displays a '2' badge
 
-    @Known-Failure-For-Reasons-Unknown
   Scenario: removing an item will lower the cart's badge counter
     Given I log in with the standard user
     And I add 'Sauce Labs Bolt T-Shirt' to the cart

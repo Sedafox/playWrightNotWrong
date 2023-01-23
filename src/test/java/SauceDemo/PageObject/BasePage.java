@@ -9,26 +9,26 @@ public class BasePage {
     Locator hamburgerMenu;
     Locator menuContainer;
 
-    public BasePage(Page page){
+    public BasePage(Page page) {
         this.page = page;
         hamburgerMenu = page.locator("#react-burger-menu-btn");
         menuContainer = page.locator(".bm-item-list");
     }
 
-    public boolean areMenuItemsVisibleOnPage(String[] items){
-        for(String item: items){
-            if(!menuContainer.getByText(item).isVisible()){
+    public boolean areMenuItemsVisibleOnPage(String[] items) {
+        for (String item : items) {
+            if (!menuContainer.getByText(item).isVisible()) {
                 return false;
             }
         }
         return true;
     }
 
-    public void clickHamburgerMenuButton(){
+    public void clickHamburgerMenuButton() {
         hamburgerMenu.click();
     }
 
-    public void selectFromMenu(String selection){
+    public void selectFromMenu(String selection) {
         menuContainer.getByText(selection).click();
     }
 

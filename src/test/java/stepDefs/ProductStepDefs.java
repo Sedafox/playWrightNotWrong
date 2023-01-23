@@ -1,22 +1,19 @@
 package stepDefs;
 
 import SauceDemo.PageObject.ProductPage;
-import com.microsoft.playwright.Page;
-import io.cucumber.java.Before;
+import SauceDemo.Utilities.PageManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
-public class ProductStepDefs {
+public class ProductStepDefs extends PageManager {
 
-    Page page;
     ProductPage productPage;
 
-    @Before
-    public void getPage(){
-        this.page = stepDefs.Hook.page;
+    public ProductStepDefs() {
         productPage = new ProductPage(page);
     }
+
     @Then("I observe the shopping cart button on the products page")
     public void iObserveTheShoppingCartButtonOnTheProductsPage() {
         Assert.assertTrue(productPage.isShoppingCartButtonVisible());

@@ -58,13 +58,13 @@
                 </configuration>
             </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.12.4</version>
-                    <configuration>
-                    </configuration>
-                </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>com.trivago.rta</groupId>
@@ -81,7 +81,8 @@
                 </executions>
                 <configuration>
                     <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
-                    <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/generated-report
+                    </generatedHtmlReportDirectory>
                     <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
                     <expandStepHooks>true</expandStepHooks>
                     <expandAttachments>true</expandAttachments>
