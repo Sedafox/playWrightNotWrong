@@ -39,3 +39,7 @@ Feature: Log In
   Scenario: When I visit the login page, I observe the Swag Labs logo
     Given I navigate to the log in page of Swag Labs
     Then I observe the Swag Labs logo
+
+  Scenario: The Login Page Only Has Two Input Fields
+    Given I navigate to the log in page of Swag Labs
+    Then I observe that only 2 input fields exist

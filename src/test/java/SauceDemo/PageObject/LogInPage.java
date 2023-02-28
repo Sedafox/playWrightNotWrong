@@ -2,6 +2,7 @@ package SauceDemo.PageObject;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import org.junit.Assert;
 
 public class LogInPage extends BasePage {
 
@@ -56,5 +57,9 @@ public class LogInPage extends BasePage {
 
     public boolean isSwagLabsLogoVisible() {
         return swagLabsLogo.isVisible();
+    }
+
+    public void assertMaximumAmountOfInputs(int maxNum) {
+        Assert.assertTrue(page.locator("//input[@class='input_error form_input']").all().size() <= maxNum);
     }
 }
