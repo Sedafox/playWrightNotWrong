@@ -6,6 +6,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
+import java.time.Year;
+
 public class ProductStepDefs extends PageManager {
 
     ProductPage productPage;
@@ -86,5 +88,16 @@ public class ProductStepDefs extends PageManager {
     @And("I remove product number {int} from the cart")
     public void iRemoveProductNumberFromTheCart(int itemIndex) {
         productPage.clickTheProductRemoveButton(itemIndex - 1);
+    }
+
+    @Then("Privacy Policy can be seen on the Products Page")
+    public void privacyPolicyCanBeSeenOnTheProductsPage() {
+        Assert.assertTrue(productPage.verifyPrivacyPolicyExistence());
+    }
+
+    @And("the Privacy Policy displays the following text on the Product Page: {string}")
+    public void thePrivacyPolicyDisplaysTheFollowingTextOnTheProductPageSauceLabsAllRightsReservedTermsOfServicePrivacyPolicy(String privacyPolicyText) {
+        Assert.assertTrue(productPage.getPrivacyPolicyText().contains(privacyPolicyText));
+        Assert.assertTrue(productPage.getPrivacyPolicyText().contains(String.valueOf(Year.now().getValue()))); //Ensure the current year is displayed
     }
 }

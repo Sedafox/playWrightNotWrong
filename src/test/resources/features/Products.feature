@@ -69,3 +69,8 @@ Feature: Products
     And I remove 'Sauce Labs Backpack' from the cart
     Then the shopping cart displays a '1' badge
 
+  Scenario: Privacy Policy is displayed on the Products page
+    Given I log in with the standard user
+    Then Privacy Policy can be seen on the Products Page
+    And the Privacy Policy displays the following text on the Product Page: 'Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy'
+

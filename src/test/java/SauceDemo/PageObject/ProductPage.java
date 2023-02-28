@@ -12,6 +12,8 @@ public class ProductPage extends BasePage {
     Locator filterProductsActiveOption;
     Locator firstProduct;
 
+    Locator privacyPolicy;
+
     public ProductPage(Page page) {
         super(page);
         this.page = page;
@@ -20,6 +22,7 @@ public class ProductPage extends BasePage {
         filterProductsDropdown = page.locator("//span[@class='select_container']");
         filterProductsActiveOption = filterProductsDropdown.locator(".active_option");
         firstProduct = page.locator("//div[@class='inventory_item_description']").first();
+        privacyPolicy = page.locator(".footer_copy");
     }
 
     public Boolean verifyOnProductPage() {
@@ -73,5 +76,13 @@ public class ProductPage extends BasePage {
 
     public void clickTheProductRemoveButton(String productName) {
         page.locator("//div[contains(text(),'" + productName + "')]/../../..//div//button[text()='Remove']").click();
+    }
+
+    public boolean verifyPrivacyPolicyExistence(){
+        return privacyPolicy.isVisible();
+    }
+
+    public String getPrivacyPolicyText() {
+        return privacyPolicy.textContent();
     }
 }
