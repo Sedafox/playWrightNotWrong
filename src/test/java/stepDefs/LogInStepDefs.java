@@ -73,4 +73,9 @@ public class LogInStepDefs extends PageManager {
         logInPage.inputPassword(logInPage.standardUserPassword);
         logInPage.clickLoginButton();
     }
+
+    @Then("I observe that only {int} input fields exist")
+    public void iObserveThatOnlyInputFieldsExist(int maxNum) {
+        logInPage.assertMaximumAmountOfInputs(maxNum);
+    }
 }
