@@ -15,7 +15,7 @@ public class Hook {
     public static void setUp() {
         Playwright playwright = Playwright.create();
         BrowserType chrome = playwright.chromium();
-        browser = chrome.launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = chrome.launch(new BrowserType.LaunchOptions().setHeadless(true));
         BrowserContext context = browser.newContext();
         page = context.newPage();
         PageManager.page = page;
